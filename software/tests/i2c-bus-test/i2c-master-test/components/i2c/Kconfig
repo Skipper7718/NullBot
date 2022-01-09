@@ -1,0 +1,17 @@
+menu "i2c master config"
+    config PIN_SDA
+        int "sda pin"
+        range 4 40
+
+    config PIN_SCL
+        int "scl pin"
+        range 4 40
+
+    config CLOCK_SPEED
+        int "clock speed"
+        range 100000 1000000
+
+    config I2C_PORT
+        int "port"
+        default 0
+endmenu

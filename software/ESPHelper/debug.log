@@ -1,0 +1,262 @@
+2021-10-04 15:51:37,352 - Debug Adapter (main) - DEBUG - START_TIME_2021_10_04_15-51-37
+2021-10-04 15:51:37,352 - Debug Adapter (main) - DEBUG - Init errors:None
+2021-10-04 15:51:37,352 - Debug Adapter (main) - INFO - Working directory: /run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor
+2021-10-04 15:51:37,353 - Debug Adapter (main) - INFO - Arguments: 
+{   'app_flash_off': 65536,
+    'board_type': None,
+    'cmdfile': None,
+    'core_file': (),
+    'debug': 5,
+    'developer_mode': 'none',
+    'device_name': 'esp32s2',
+    'elfpath': (   '/run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/build/coprocessor.elf',),
+    'log_file': '/run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/debug.log',
+    'log_mult_files': None,
+    'log_no_debug_console': None,
+    'oocd': 'openocd',
+    'oocd_args': None,
+    'oocd_ip': 'localhost',
+    'oocd_mode': 'without_oocd',
+    'oocd_scripts': None,
+    'port': 43474,
+    'postmortem': False,
+    'tmo_scale_factor': 1,
+    'toolchain_prefix': None}
+2021-10-04 15:51:37,353 - Debug Adapter (main) - CRITICAL - Debug adapter -> Extension: DEBUG_ADAPTER_STARTED
+2021-10-04 15:51:37,354 - Debug Adapter (main) - INFO - Starting. Cmd: /home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter_main.py -d 5 -e /run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/build/coprocessor.elf -l /run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/debug.log -p 43474 -dn esp32s2 -a 0x10000 -om without_oocd
+
+2021-10-04 15:51:37,356 - Debug Adapter (main) - INFO - Listening on port 43474 (host: overlord,local ip: 127.0.1.1)
+2021-10-04 15:51:37,356 - Debug Adapter (main) - CRITICAL - Debug adapter -> Extension: DEBUG_ADAPTER_READY2CONNECT
+2021-10-04 15:51:37,374 - Debug Adapter (main) - DEBUG - Got connection
+2021-10-04 15:51:37,375 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Debug adapter -> Extension: DEBUG_ADAPTER_STARTED\n", "source": {}}, "seq": 0}
+
+2021-10-04 15:51:37,375 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Starting. Cmd: /home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter_main.py -d 5 -e /run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/build/coprocessor.elf -l /run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/debug.log -p 43474 -dn esp32s2 -a 0x10000 -om without_oocd\n\n", "source": {}}, "seq": 1}
+
+2021-10-04 15:51:37,375 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Listening on port 43474 (host: overlord,local ip: 127.0.1.1)\n", "source": {}}, "seq": 2}
+
+2021-10-04 15:51:37,376 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Debug adapter -> Extension: DEBUG_ADAPTER_READY2CONNECT\n", "source": {}}, "seq": 3}
+
+2021-10-04 15:51:37,376 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Got connection\n", "source": {}}, "seq": 4}
+
+2021-10-04 15:51:37,383 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'Content-Length: 410\\r\\n'<<
+
+2021-10-04 15:51:37,383 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'\\r\\n'<<
+
+2021-10-04 15:51:37,383 - Debug Adapter(Command Processor) - DEBUG - Got json: {
+    "arguments": {
+        "adapterID": "espidf",
+        "clientID": "vscode",
+        "clientName": "Visual Studio Code",
+        "columnsStartAt1": true,
+        "linesStartAt1": true,
+        "locale": "en-us",
+        "pathFormat": "path",
+        "supportsInvalidatedEvent": true,
+        "supportsMemoryReferences": true,
+        "supportsProgressReporting": true,
+        "supportsRunInTerminalRequest": true,
+        "supportsVariablePaging": true,
+        "supportsVariableType": true
+    },
+    "command": "initialize",
+    "seq": 1,
+    "type": "request"
+}
+2021-10-04 15:51:37,383 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Got json: {\n    \"arguments\": {\n        \"adapterID\": \"espidf\",\n        \"clientID\": \"vscode\",\n        \"clientName\": \"Visual Studio Code\",\n        \"columnsStartAt1\": true,\n        \"linesStartAt1\": true,\n        \"locale\": \"en-us\",\n        \"pathFormat\": \"path\",\n        \"supportsInvalidatedEvent\": true,\n        \"supportsMemoryReferences\": true,\n        \"supportsProgressReporting\": true,\n        \"supportsRunInTerminalRequest\": true,\n        \"supportsVariablePaging\": true,\n        \"supportsVariableType\": true\n    },\n    \"command\": \"initialize\",\n    \"seq\": 1,\n    \"type\": \"request\"\n}\n", "source": {}}, "seq": 5}
+
+2021-10-04 15:51:37,386 - Gdb - DEBUG - MI->: -gdb-set mi-async on
+2021-10-04 15:51:37,410 - Gdb - DEBUG - MI<-:
+[{'message': 'thread-group-added',
+  'payload': {'id': 'i1'},
+  'stream': 'stdout',
+  'token': None,
+  'type': 'notify'},
+ {'message': 'done',
+  'payload': None,
+  'stream': 'stdout',
+  'token': None,
+  'type': 'result'}]
+2021-10-04 15:51:37,411 - Gdb - INFO - NOTIFY: thread-group-added {'id': 'i1'}
+2021-10-04 15:51:37,411 - Gdb - DEBUG - RESULT: done None
+2021-10-04 15:51:37,411 - Gdb - DEBUG - MI->: -gdb-set logging file /tmp/gdb_proc.log
+2021-10-04 15:51:37,411 - Gdb - DEBUG - MI<-:
+[{'message': 'done',
+  'payload': None,
+  'stream': 'stdout',
+  'token': None,
+  'type': 'result'}]
+2021-10-04 15:51:37,411 - Gdb - DEBUG - RESULT: done None
+2021-10-04 15:51:37,411 - Gdb - DEBUG - MI->: -gdb-set logging on
+2021-10-04 15:51:37,412 - Gdb - DEBUG - MI<-:
+[{'message': 'done',
+  'payload': None,
+  'stream': 'stdout',
+  'token': None,
+  'type': 'result'}]
+2021-10-04 15:51:37,412 - Gdb - DEBUG - RESULT: done None
+2021-10-04 15:51:37,412 - Debug Adapter (main) - DEBUG - Created gdb object of type: GdbEsp32s2
+2021-10-04 15:51:37,412 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Created gdb object of type: GdbEsp32s2\n", "source": {}}, "seq": 6}
+
+2021-10-04 15:51:37,412 - Gdb - DEBUG - MI->: -file-exec-and-symbols /run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/build/coprocessor.elf
+2021-10-04 15:51:37,440 - Gdb - DEBUG - MI<-:
+[{'message': 'done',
+  'payload': None,
+  'stream': 'stdout',
+  'token': None,
+  'type': 'result'}]
+2021-10-04 15:51:37,441 - Gdb - DEBUG - RESULT: done None
+2021-10-04 15:51:37,441 - Gdb - DEBUG - Skipped connection to remote target
+2021-10-04 15:51:37,441 - Debug Adapter(Command Processor) - DEBUG - Processed command: initialize
+2021-10-04 15:51:37,441 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "response", "request_seq": 1, "success": true, "command": "initialize", "seq": 7, "body": {"supportsConfigurationDoneRequest": true, "supportsFunctionBreakpoints": false, "supportsConditionalBreakpoints": true, "supportsHitConditionalBreakpoints": true, "supportsEvaluateForHovers": false, "exceptionBreakpointFilters": false, "supportsStepBack": false, "supportsSetVariable": true, "supportsRestartFrame": false, "supportsGotoTargetsRequest": false, "supportsStepInTargetsRequest": true, "supportsCompletionsRequest": false, "completionTriggerCharacters": false, "supportsModulesRequest": false, "additionalModuleColumns": false, "supportedChecksumAlgorithms": false, "supportsRestartRequest": true, "supportsExceptionOptions": false, "supportsValueFormattingOptions": false, "supportsExceptionInfoRequest": false, "supportTerminateDebuggee": true, "supportsDelayedStackTraceLoading": false, "supportsLoadedSourcesRequest": false, "supportsLogPoints": false, "supportsTerminateThreadsRequest": false, "supportsSetExpression": false, "supportsTerminateRequest": false, "supportsDataBreakpoints": false, "supportsReadMemoryRequest": false, "supportsDisassembleRequest": false, "supportsCancelRequest": false, "supportsBreakpointLocationsRequest": false, "supportsClipboardContext": false, "supportsSteppingGranularity": false, "supportsInstructionBreakpoints": false}}
+
+2021-10-04 15:51:37,442 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "initialized", "seq": 8}
+
+2021-10-04 15:51:37,442 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Debug Adapter initialized\n", "source": {}}, "seq": 9}
+
+2021-10-04 15:51:37,443 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Processed command: initialize\n", "source": {}}, "seq": 10}
+
+2021-10-04 15:51:37,447 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'Content-Length: 349\\r\\n'<<
+
+2021-10-04 15:51:37,447 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'\\r\\n'<<
+
+2021-10-04 15:51:37,448 - Debug Adapter(Command Processor) - DEBUG - Got json: {
+    "arguments": {
+        "__configurationTarget": 5,
+        "__sessionId": "78be31d5-18a7-49e3-a8f2-1ed9242271d5",
+        "elfFilePath": "/run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/build/coprocessor.elf",
+        "name": "Launch",
+        "request": "launch",
+        "skipVerifyAppBinBeforeDebug": true,
+        "type": "espidf"
+    },
+    "command": "launch",
+    "seq": 2,
+    "type": "request"
+}
+2021-10-04 15:51:37,448 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Got json: {\n    \"arguments\": {\n        \"__configurationTarget\": 5,\n        \"__sessionId\": \"78be31d5-18a7-49e3-a8f2-1ed9242271d5\",\n        \"elfFilePath\": \"/run/media/skipper/Data/DELTA/LAMBDA/nullifikator/software/esp-coprocessor/coprocessor/build/coprocessor.elf\",\n        \"name\": \"Launch\",\n        \"request\": \"launch\",\n        \"skipVerifyAppBinBeforeDebug\": true,\n        \"type\": \"espidf\"\n    },\n    \"command\": \"launch\",\n    \"seq\": 2,\n    \"type\": \"request\"\n}\n", "source": {}}, "seq": 11}
+
+2021-10-04 15:51:37,448 - Gdb - DEBUG - MI->: -interpreter-exec console "source /home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_backend/debug_backend/hw_specific/esp_init.gdb"
+2021-10-04 15:51:42,449 - Gdb - DEBUG - MI<-:
+[{'message': None,
+  'payload': '[default ESP gdbinit file]',
+  'stream': 'stdout',
+  'type': 'console'},
+ {'message': 'cmd-param-changed',
+  'payload': {'param': 'remotetimeout', 'value': '3'},
+  'stream': 'stdout',
+  'token': None,
+  'type': 'notify'},
+ {'message': 'cmd-param-changed',
+  'payload': {'param': 'remote hardware-watchpoint-limit', 'value': '2'},
+  'stream': 'stdout',
+  'token': None,
+  'type': 'notify'},
+ {'message': None,
+  'payload': '/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_backend/debug_backend/hw_specific/esp_init.gdb:4: '
+             'Error in sourced command file:\\n',
+  'stream': 'stdout',
+  'type': 'log'},
+ {'message': None,
+  'payload': '\\"monitor\\" command not supported by this target.\\n',
+  'stream': 'stdout',
+  'type': 'log'},
+ {'message': 'error',
+  'payload': {'msg': '/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_backend/debug_backend/hw_specific/esp_init.gdb:4: '
+                     'Error in sourced command file:n"monitor" command not '
+                     'supported by this target.'},
+  'stream': 'stdout',
+  'token': None,
+  'type': 'result'}]
+2021-10-04 15:51:42,449 - Gdb - INFO - CONS: '[default ESP gdbinit file]'
+2021-10-04 15:51:42,449 - Gdb - INFO - NOTIFY: cmd-param-changed {'param': 'remotetimeout', 'value': '3'}
+2021-10-04 15:51:42,449 - Gdb - INFO - NOTIFY: cmd-param-changed {'param': 'remote hardware-watchpoint-limit', 'value': '2'}
+2021-10-04 15:51:42,450 - Gdb - DEBUG - LOG: ('/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_backend/debug_backend/hw_specific/esp_init.gdb:4: '
+ 'Error in sourced command file:\\n')
+2021-10-04 15:51:42,450 - Gdb - DEBUG - LOG: '\\"monitor\\" command not supported by this target.\\n'
+2021-10-04 15:51:42,450 - Gdb - DEBUG - RESULT: error {'msg': '/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_backend/debug_backend/hw_specific/esp_init.gdb:4: '
+        'Error in sourced command file:n"monitor" command not supported by '
+        'this target.'}
+2021-10-04 15:51:52,462 - Debug Adapter (main) - ERROR - Failed to wait for target state 1! Current state 0
+Traceback (most recent call last):
+  File "/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/command_processor.py", line 143, in on_launch_request
+    self.da.run(start=(not self.da.state.no_debug))
+  File "/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_adapter.py", line 734, in run
+    self._gdb.exec_run()
+  File "/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_backend/debug_backend/hw_specific/esp.py", line 173, in exec_run
+    self.wait_target_state(TARGET_STATE_STOPPED, 10)
+  File "/home/skipper/.vscode/extensions/espressif.esp-idf-extension-1.2.0/esp_debug_adapter/debug_adapter/debug_backend/debug_backend/gdb.py", line 517, in wait_target_state
+    raise DebuggerTargetStateTimeoutError("Failed to wait for target state %d! Current state %d" % (state, self._target_state))
+debug_adapter.debug_backend.debug_backend.defs.DebuggerTargetStateTimeoutError: Failed to wait for target state 1! Current state 0
+2021-10-04 15:51:52,462 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Failed to wait for target state 1! Current state 0\n", "source": {}}, "seq": 12}
+
+2021-10-04 15:51:52,464 - Debug Adapter(Command Processor) - DEBUG - Processed command: launch
+2021-10-04 15:51:52,464 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Failed to wait for target state 1! Current state 0\n", "source": {}}, "seq": 13}
+
+2021-10-04 15:51:52,465 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'Content-Length: 56\\r\\n'<<
+
+2021-10-04 15:51:52,465 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "response", "request_seq": 2, "success": false, "command": "launch", "seq": 14}
+
+2021-10-04 15:51:52,465 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'\\r\\n'<<
+
+2021-10-04 15:51:52,466 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Debug Adapter is not running\n", "source": {}}, "seq": 15}
+
+2021-10-04 15:51:52,466 - Debug Adapter(Command Processor) - DEBUG - Got json: {
+    "arguments": {},
+    "command": "configurationDone",
+    "seq": 3,
+    "type": "request"
+}
+2021-10-04 15:51:52,466 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Processed command: launch\n", "source": {}}, "seq": 16}
+
+2021-10-04 15:51:52,467 - Debug Adapter(Command Processor) - DEBUG - Processed command: configurationDone
+2021-10-04 15:51:52,467 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Got json: {\n    \"arguments\": {},\n    \"command\": \"configurationDone\",\n    \"seq\": 3,\n    \"type\": \"request\"\n}\n", "source": {}}, "seq": 17}
+
+2021-10-04 15:51:52,467 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "response", "request_seq": 3, "success": true, "command": "configurationDone", "seq": 18}
+
+2021-10-04 15:51:52,468 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Processed command: configurationDone\n", "source": {}}, "seq": 19}
+
+2021-10-04 15:51:52,564 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'Content-Length: 79\\r\\n'<<
+
+2021-10-04 15:51:52,570 - Debug Adapter (ReaderThread) - DEBUG - read line: >>b'\\r\\n'<<
+
+2021-10-04 15:51:52,570 - Debug Adapter(Command Processor) - DEBUG - Got json: {
+    "arguments": {
+        "restart": false
+    },
+    "command": "disconnect",
+    "seq": 4,
+    "type": "request"
+}
+2021-10-04 15:51:52,573 - Debug Adapter (main) - DEBUG - Adapter is Stopping...
+2021-10-04 15:51:52,573 - Debug Adapter (main) - DEBUG - Stopping target poller
+2021-10-04 15:51:52,573 - Debug Adapter (main) - DEBUG - Closing the GDB process
+2021-10-04 15:51:52,573 - Gdb - DEBUG - MI->: -gdb-exit
+2021-10-04 15:51:52,574 - Gdb - DEBUG - MI<-:
+[{'message': 'exit',
+  'payload': None,
+  'stream': 'stdout',
+  'token': None,
+  'type': 'result'}]
+2021-10-04 15:51:52,575 - Gdb - DEBUG - RESULT: exit None
+2021-10-04 15:51:52,572 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Got json: {\n    \"arguments\": {\n        \"restart\": false\n    },\n    \"command\": \"disconnect\",\n    \"seq\": 4,\n    \"type\": \"request\"\n}\n", "source": {}}, "seq": 20}
+
+2021-10-04 15:51:52,575 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Debug Adapter stopped\n", "source": {}}, "seq": 21}
+
+2021-10-04 15:51:52,575 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Adapter is Stopping...\n", "source": {}}, "seq": 22}
+
+2021-10-04 15:51:52,576 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Stopping target poller\n", "source": {}}, "seq": 23}
+
+2021-10-04 15:51:52,576 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Closing the GDB process\n", "source": {}}, "seq": 24}
+
+2021-10-04 15:51:52,732 - Debug Adapter (main) - DEBUG - Closing the Socket
+2021-10-04 15:51:52,732 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Closing the Socket\n", "source": {}}, "seq": 25}
+
+2021-10-04 15:51:52,733 - Debug Adapter (WriterThread) - DEBUG - Writing: {"type": "event", "event": "output", "body": {"output": "Stopping of the Writer thread\n", "source": {}}, "seq": 26}
+
+2021-10-04 15:51:52,732 - Debug Adapter (main) - DEBUG - Stopping of the Writer thread
+2021-10-04 15:51:52,734 - Debug Adapter (WriterThread) - DEBUG - Writing: exit
+
+2021-10-04 15:51:52,734 - Debug Adapter (main) - DEBUG - Stopping of the Reader thread
+2021-10-04 15:51:52,734 - Debug Adapter (main) - DEBUG - Adapter is Stopped
+2021-10-04 15:51:52,735 - Debug Adapter (main) - CRITICAL - Debug adapter -> Extension: DEBUG_ADAPTER_STOPPED
+2021-10-04 15:51:52,735 - Debug Adapter(Command Processor) - DEBUG - Processed command: disconnect

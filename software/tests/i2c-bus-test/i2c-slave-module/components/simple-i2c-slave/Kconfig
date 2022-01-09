@@ -1,0 +1,29 @@
+menu "slave configuration"
+
+    config PIN_SDA
+        int "sda pin"
+        range 1 40
+
+    config PIN_SCL
+        int "scl pin"
+        range 1 40
+
+    config SLAVE_ADDRESS
+        hex "slave address"
+        range 0x5 0x7e
+    
+    config I2C_PORT
+        int "i2c port"
+        default 0
+        help
+            equivalent to I2C_NUM_X
+
+    config I2C_READ_TIMEOUT
+        int "i2c rx timeout"
+        range 5 1000
+        default 500
+        help
+            time to wait for bytes to get into the rx fifo
+            for then to be further processed
+
+endmenu
