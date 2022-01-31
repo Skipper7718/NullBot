@@ -1,3 +1,4 @@
+from imp import find_module
 from typing import Union
 import serial
 from time import sleep
@@ -5,7 +6,10 @@ from serial.serialposix import Serial
 import yaml, os
 
 global __coprocessor_access
-__coprocessor_access = None
+_coprocessor = None
+
+global found_modulpasses
+found_modules = None
 
 with open(os.path.join(os.path.dirname(__file__), "./config/instruction_set.yml"), "r") as file:
     instruction_set = yaml.load(file)
@@ -13,6 +17,7 @@ with open(os.path.join(os.path.dirname(__file__), "./config/instruction_set.yml"
 class __SerialController:
     def __init__(self, port:str="/dev/ttyUSB0", baud:int=115200, timeout:int=None) -> None:
         self.device = serial.Serial(port, baud, timeout=timeout)
+        self.locked = True
     
     def write(self, command:list) -> None:
         command.append(instruction_set["stop"])
@@ -56,25 +61,52 @@ class __SerialController:
 #load configuration
 with open(os.path.join(os.path.dirname(__file__), "./config/coprocessor-config.yml"), "r") as file:
     __coprocessor_config = yaml.load(file)
-if(__coprocessor_access == None):
-    __coprocessor_access = __SerialController(__coprocessor_config["port"], __coprocessor_config["baudrate"])
+if(_coprocessor == None):
+    _coprocessor = __SerialController(__coprocessor_config["port"], __coprocessor_config["baudrate"])
+    while( found_modules == None ):
+        found_modules = _coprocessor.read_scan()
+    _coprocessor.locked = False
 
+def wait_lock(func):
+    def __inner(*args):
+        while( _coprocessor.locked ):
+            pass
+        _coprocessor.locked = True
+        func(*args)
+        _coprocessor.locked = False
+    return __inner
 
-def get_controller() -> __SerialController:
-    return __coprocessor_access
+class Base:
+    def __init__(self, address: int) -> None:
+        self.address = address
+        if( self.address not in found_modules ):
+            _coprocessor.display_error()
+            raise Exception("Module not found")
 
+    @wait_lock
+    def send(self, *payload):
+        _coprocessor.write_address(self.address, list(payload))
+    
+    @wait_lock
+    def receive(self, num_bytes: int):
+        ret = _coprocessor.read_address(self.address, num_bytes)
+        return ret
 
-### TEST ###
-#esp = __SerialController()
-#print("TESTING DISPLAY MODES")
-#esp.display_thread_failure()
-#sleep(1)
-#esp.display_error()
-#sleep(1)
-#esp.display_all_running()
-#print("TESTING WRITE")
-#esp.write_address(0x31, [0x20])
-#sleep(1)
-#print(f"READ ADDRESS TEST (using echo address) {[hex(x) for x in esp.read_address(0x31, 1)]}")
-#sleep(1)
-#print(f"AVAILABLE ADDRESSES {[hex(x) for x in esp.read_scan()]}")
+# Prebuilt nullbot modules
+class DriveModule(Base):
+    """"Module for basic driving around - H style voltage regulators"""
+    def __init__(self, address: int = 0x51) -> None:
+        super().__init__(address)
+        self.v_calibration: int
+    
+    def forward(self) -> None:
+        self.send(0x01)
+
+    def backward(self) -> None:
+        self.send(0x02)
+    
+    def right_seconds(self, seconds: int) -> None:
+        self.send(0x03, seconds)
+    
+    def left_seconds(self, seconds: int) -> None:
+        self.send(0x04, seconds)

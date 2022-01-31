@@ -1,9 +1,8 @@
 import threading
-from null_core import modules
+import modules
 from time import sleep
 
 registered_threads = []
-
 
 class LoopThread:
     """A thread for the watchdog that loops permanently"""
@@ -38,16 +37,16 @@ def shutdown_all_threads() -> None:
 def report_thread_crash(thread:LoopThread, e:Exception) -> None:
     print(f"Thread {thread.name} crashed unexpectedly")
     print(f"Reason: {e}")
-    modules.get_controller().display_thread_failure()
+    # modules.get_controller().display_thread_failure()
 
-#def test(i):
+# def test(i):
 #    print(i)
 #    sleep(2)
-#    raise Exception
+#    raise Exception("thi is an exception")
 
-#t  = LoopThread(target=test, args=(1,), name="test", daemon=True)
-#t.start()
-#print(registered_threads)
+# t  = LoopThread(target=test, args=(1,), name="test", daemon=True)
+# t.start()
+# print(registered_threads)
 
-#while( True ):
+# while( True ):
 #    sleep(5)

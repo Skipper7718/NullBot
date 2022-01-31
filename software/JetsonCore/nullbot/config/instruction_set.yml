@@ -8,17 +8,3 @@ display:
   error: 0x30
   thread_failure: 0x31
   all_running: 0x32
-movement:
-  forward: 0x40
-  backward: 0x41
-  right: 0x42
-  left: 0x43
-  lift_fr: 0x44
-  lift_fl: 0x45
-  lift_br: 0x46
-  lift_bl: 0x47
-  lower_fr: 0x48
-  lower_fl: 0x49
-  lower_br: 0x4a
-  lower_bl: 0x4b
-# the movement operations are after the 0x4, e.g. the third instruction for movement would be 0x42
