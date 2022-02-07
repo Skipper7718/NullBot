@@ -67,22 +67,23 @@ void callback(uint8_t *payload, size_t len) {
 }
 
 int main() {
-    init_i2c(16, 17, 0x56);
+    init_i2c(26, 27, 0x56);
+    sleep_ms(1000);
     init_drive_module();
 
     // self test
-    uint8_t payload = 0x02;
-    callback(&payload, 1);
-    sleep_ms(1000);
-    payload = 0x03;
-    callback(&payload, 1);
-    sleep_ms(1000);
-    payload = 0x04;
-    callback(&payload, 1);
-    sleep_ms(1000);
-    payload = 0x01;
-    callback(&payload, 1);
-
+    // uint8_t payload = 0x02;
+    // callback(&payload, 1);
+    // sleep_ms(1000);
+    // payload = 0x03;
+    // callback(&payload, 1);
+    // sleep_ms(1000);
+    // payload = 0x04;
+    // callback(&payload, 1);
+    // sleep_ms(1000);
+    // payload = 0x01;
+    // callback(&payload, 1);
+    start_with_callback(callback);
     for( ;; ) { tight_loop_contents(); }
 
 

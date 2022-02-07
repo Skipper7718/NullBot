@@ -6,7 +6,7 @@ from PIL import Image
 import cv2
 import numpy as np
 
-from null_core import watchdog
+from nullbot import watchdog
 
 __activated = False
 __callback_function = None

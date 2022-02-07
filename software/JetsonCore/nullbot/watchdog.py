@@ -1,5 +1,5 @@
 import threading
-import modules
+from nullbot import modules
 from time import sleep
 
 registered_threads = []

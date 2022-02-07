@@ -9,7 +9,7 @@
 #include "pico/multicore.h"
 
 // PORT DEFINITIONS
-#define PORT i2c0
+#define PORT i2c1
 
 // led blinks in interval if i2c is enabled
 void led_task() {

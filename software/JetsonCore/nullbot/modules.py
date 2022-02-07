@@ -98,15 +98,24 @@ class DriveModule(Base):
     def __init__(self, address: int = 0x51) -> None:
         super().__init__(address)
         self.v_calibration: int
-    
-    def forward(self) -> None:
+
+    def stop(self, delay:int = 0) -> None:
         self.send(0x01)
 
-    def backward(self) -> None:
+    def forward(self, duration:int = 0) -> None:
         self.send(0x02)
-    
-    def right_seconds(self, seconds: int) -> None:
-        self.send(0x03, seconds)
-    
-    def left_seconds(self, seconds: int) -> None:
-        self.send(0x04, seconds)
+        if( duration ):
+            sleep(duration)
+            self.stop()
+
+    def right(self, duration:int = 0) -> None:
+        self.send(0x03)
+        if( duration ):
+            sleep(duration)
+            self.stop()
+
+    def left(self, duration:int = 0) -> None:
+        self.send(0x04)
+        if( duration ):
+            sleep(duration)
+            self.stop()
