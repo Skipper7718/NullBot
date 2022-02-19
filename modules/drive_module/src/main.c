@@ -2,13 +2,23 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "pico/stdlib.h"
+#include "hardware/pwm.h"
 #include "pico/bootrom.h"
 #include "hardware/i2c.h"
-#include "hardware/gpio.h"
 #include "null_module.h"
 #include "drive_module.h"
 
 const int num_pins = 8;
+static int level = 255;
+
+long remap( long x ) {
+    return map(x, 0, 255, 0, 65535);
+}
+
+void gpio_put_analog( int gpio, bool value ) {
+    pwm_set_gpio_level(gpio, value ? remap(level) : 0);
+}
+
 const int pins[8] = {
     F_L_FORWARD,
     F_L_REVERSE,
@@ -21,18 +31,18 @@ const int pins[8] = {
 };
 
 void init_drive_module() {
-
     //init pins
+    pwm_config config = pwm_get_default_config();
     for( int i = 0; i < num_pins; i++ ) {
-        gpio_init(pins[i]);
-        gpio_set_dir(pins[i], true);
+        gpio_set_function(pins[i], GPIO_FUNC_PWM);
+        int slice_num = pwm_gpio_to_slice_num(pins[i]);
+        pwm_init(slice_num, &config, true);
     }
-
 }
 
 void stop_all() {
     for( int i = 0; i < num_pins; i++ ) {
-        gpio_put(pins[i], false);
+        gpio_put_analog(pins[i], false);
     }
 }
 
@@ -44,24 +54,45 @@ void callback(uint8_t *payload, size_t len) {
             break;
         case 0x02: // forward
             stop_all();
-            gpio_put(F_L_FORWARD, true);
-            gpio_put(F_R_FORWARD, true);
-            gpio_put(B_L_FORWARD, true);
-            gpio_put(B_R_FORWARD, true);
+            gpio_put_analog(F_L_FORWARD, true);
+            gpio_put_analog(F_R_FORWARD, true);
+            gpio_put_analog(B_L_FORWARD, true);
+            gpio_put_analog(B_R_FORWARD, true);
             break;
         case 0x03: // right
             stop_all();
-            gpio_put(F_L_FORWARD, true);
-            gpio_put(F_R_REVERSE, true);
-            gpio_put(B_L_FORWARD, true);
-            gpio_put(B_R_REVERSE, true);
+            gpio_put_analog(F_L_FORWARD, true);
+            gpio_put_analog(F_R_REVERSE, true);
+            gpio_put_analog(B_L_FORWARD, true);
+            gpio_put_analog(B_R_REVERSE, true);
             break;
-        case 0x04:
+        case 0x04: // left
             stop_all();
-            gpio_put(F_L_REVERSE, true);
-            gpio_put(F_R_FORWARD, true);
-            gpio_put(B_L_REVERSE, true);
-            gpio_put(B_R_FORWARD, true);
+            gpio_put_analog(F_L_REVERSE, true);
+            gpio_put_analog(F_R_FORWARD, true);
+            gpio_put_analog(B_L_REVERSE, true);
+            gpio_put_analog(B_R_FORWARD, true);
+            break;
+        case 0x05: // backward
+            stop_all();
+            gpio_put_analog(F_L_REVERSE, true);
+            gpio_put_analog(F_R_REVERSE, true);
+            gpio_put_analog(B_L_REVERSE, true);
+            gpio_put_analog(B_R_REVERSE, true);
+            break;
+        case 0x06: // simple right
+            stop_all();
+            gpio_put_analog(F_L_FORWARD, true);
+            gpio_put_analog(B_L_FORWARD, true);
+            break;
+        case 0x07: // simple left
+            stop_all();
+            gpio_put_analog(F_R_FORWARD, true);
+            gpio_put_analog(B_R_FORWARD, true);
+            break;
+        case 0x08: // set level
+            if( len < 2 ) break;
+            level = payload[1];
             break;
     }
 }
@@ -72,17 +103,18 @@ int main() {
     init_drive_module();
 
     // self test
-    // uint8_t payload = 0x02;
-    // callback(&payload, 1);
-    // sleep_ms(1000);
-    // payload = 0x03;
-    // callback(&payload, 1);
-    // sleep_ms(1000);
-    // payload = 0x04;
-    // callback(&payload, 1);
-    // sleep_ms(1000);
-    // payload = 0x01;
-    // callback(&payload, 1);
+    // for( uint8_t payload = 0x07; payload > 0; payload-- ) {
+    //     callback(&payload, 1);
+    //     sleep_ms(1000);
+    // }
+    // uint8_t settings[2] = {0x08, 0xc0};
+    // callback(settings, sizeof(settings));
+    // for( uint8_t payload = 0x07; payload > 0; payload-- ) {
+    //     callback(&payload, 1);
+    //     sleep_ms(1000);
+    // }
+
+    // module loop
     start_with_callback(callback);
     for( ;; ) { tight_loop_contents(); }
 

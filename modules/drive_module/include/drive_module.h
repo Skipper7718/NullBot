@@ -3,6 +3,8 @@
 
 
 void init_drive_module();
+void gpio_put_analog_analog( int gpio, bool value );
+long remap( long x );
 
 //Pinout used to control L9110 motor drivers
 #define F_L_FORWARD 12

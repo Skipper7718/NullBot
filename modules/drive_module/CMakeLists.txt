@@ -13,7 +13,7 @@ file( GLOB source_files
 
 add_executable(drive ${source_files})
 
-target_link_libraries(drive pico_bootrom pico_multicore hardware_i2c hardware_gpio pico_stdlib)
+target_link_libraries(drive pico_bootrom pico_multicore hardware_gpio hardware_i2c hardware_pwm pico_stdlib)
 target_include_directories(drive PRIVATE "./include")
 
 pico_enable_stdio_usb(drive true)

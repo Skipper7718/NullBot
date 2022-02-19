@@ -102,8 +102,20 @@ class DriveModule(Base):
     def stop(self, delay:int = 0) -> None:
         self.send(0x01)
 
+    def set_level(self, level:int) -> None:
+        if(level >= 0 and level <= 255):
+            self.send(0x08, level)
+        else:
+            raise Exception(f"Level cannot be {level}. Range is 0-255 (0x00 - 0xff)")
+
     def forward(self, duration:int = 0) -> None:
         self.send(0x02)
+        if( duration ):
+            sleep(duration)
+            self.stop()
+        
+    def reverse(self, duration:int = 0) -> None:
+        self.send(0x05)
         if( duration ):
             sleep(duration)
             self.stop()
@@ -116,6 +128,18 @@ class DriveModule(Base):
 
     def left(self, duration:int = 0) -> None:
         self.send(0x04)
+        if( duration ):
+            sleep(duration)
+            self.stop()
+
+    def simple_right(self, duration:int = 0) -> None:
+        self.send(0x06)
+        if( duration ):
+            sleep(duration)
+            self.stop()
+
+    def simple_left(self, duration:int = 0) -> None:
+        self.send(0x07)
         if( duration ):
             sleep(duration)
             self.stop()
