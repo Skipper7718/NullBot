@@ -87,7 +87,7 @@ int i2c_scan_bus(uint8_t *found_addresses, size_t buf_size) {
             i2c_master_start(cmd);
             i2c_master_write_byte(cmd, (address << 1) | I2C_MASTER_WRITE, I2C_MASTER_NACK);
             i2c_master_stop(cmd);
-            esp_err_t ret = i2c_master_cmd_begin(CONFIG_I2C_PORT, cmd, 10 / portTICK_RATE_MS);
+            esp_err_t ret = i2c_master_cmd_begin(CONFIG_I2C_PORT, cmd, 10 / portTICK_PERIOD_MS);
             i2c_cmd_link_delete(cmd);
             if (ret == ESP_OK) {
                 found_addresses[index++] = address;
