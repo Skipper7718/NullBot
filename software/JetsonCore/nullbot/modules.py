@@ -50,10 +50,12 @@ class __SerialController:
         self.write([instruction_set["clear_i2c"]])
     
     def led_set(self, led_num:int, r:int, g:int, b:int) -> None:
-        self.write([instruction_set["led_set"], led_num, r, g, b])
+        if( ((r+g+b) - 765) <= 0 and ((r+g+b) - 765) >= -765 ): # if all values are between 0 and 255
+            self.write([instruction_set["led_set"], led_num, r, g, b])
 
     def led_fill(self, r:int, g:int, b:int) -> None:
-        self.write([instruction_set["led_fill"], r, g, b])
+        if( ((r+g+b) - 765) <= 0 and ((r+g+b) - 765) >= -765 ): # if all values are between 0 and 255
+            self.write([instruction_set["led_fill"], r, g, b])
     
     def display_error(self):
         self.write([instruction_set["display"]["error"]])
