@@ -1,3 +1,4 @@
+from argparse import ArgumentError
 from imp import find_module
 from typing import Union
 import serial
@@ -5,7 +6,7 @@ from time import sleep
 from serial.serialposix import Serial
 import yaml, os
 
-global __coprocessor_access
+global _coprocessor
 _coprocessor = None
 
 global found_modulpasses
@@ -50,12 +51,16 @@ class __SerialController:
         self.write([instruction_set["clear_i2c"]])
     
     def led_set(self, led_num:int, r:int, g:int, b:int) -> None:
-        if( ((r+g+b) - 765) <= 0 and ((r+g+b) - 765) >= -765 ): # if all values are between 0 and 255
-            self.write([instruction_set["led_set"], led_num, r, g, b])
+        if( ((r+g+b) - 760) <= 0 and ((r+g+b) - 760) >= -760 ): # if all values are between 0 and 250
+            self.write([instruction_set["led_set"], led_num+1, r+1, g+1, b+1])
+        else:
+            raise Exception("Please use the range 0-250")
 
     def led_fill(self, r:int, g:int, b:int) -> None:
-        if( ((r+g+b) - 765) <= 0 and ((r+g+b) - 765) >= -765 ): # if all values are between 0 and 255
-            self.write([instruction_set["led_fill"], r, g, b])
+        if( ((r+g+b) - 760) <= 0 and ((r+g+b) - 760) >= -760 ): # if all values are between 0 and 255
+            self.write([instruction_set["led_fill"], r+1, g+1, b+1])
+        else:
+            raise Exception("Please use the range 0-250")
     
     def display_error(self):
         self.write([instruction_set["display"]["error"]])

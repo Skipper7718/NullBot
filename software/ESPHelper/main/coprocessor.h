@@ -5,7 +5,7 @@ int serial_read_command(char *buffer, int buffer_len);
 void print_display(const char *message);
 void interpret_signal(char *input, int signal_length);
 esp_err_t fill_led(uint32_t r, uint32_t g, uint32_t b);
-esp_err_t print_led(size_t led_num, uint32_t r, uint32_t g, uint32_t b);
+esp_err_t print_led(uint32_t led_num, uint32_t r, uint32_t g, uint32_t b);
 
 enum INSTRUCTION_SET {
     i_stop = 0xfe,

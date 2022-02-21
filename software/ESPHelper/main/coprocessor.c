@@ -92,12 +92,16 @@ void interpret_signal(char *input, int signal_length) {
             putchar(i_stop);
             break;
         
-        case i_led_set:
-            ESP_ERROR_CHECK(print_led(input[1], input[2], input[3], input[4]));
+        case i_led_set: // The value has to be modified because 0x00 and 0xff do not get appended to 
+            if( signal_length  < 5 ) break;
+            sprintf(text, "LED: %d", input[1]);
+            print_display(text);
+            ESP_ERROR_CHECK(print_led(input[1] - 1, input[2] - 1, input[3] - 1, input[4] - 1));
             break;
         
         case i_led_fill:
-            ESP_ERROR_CHECK(fill_led(input[1], input[2], input[3]));
+            if( signal_length < 4 ) break;
+            ESP_ERROR_CHECK(fill_led(input[1] - 1, input[2] - 1, input[3] - 1));
             break;
 
         case i_write_address:
@@ -161,7 +165,7 @@ void print_display(const char *message) {
 }
 
 
-esp_err_t print_led(size_t led_num, uint32_t r, uint32_t g, uint32_t b) {
+esp_err_t print_led(uint32_t led_num, uint32_t r, uint32_t g, uint32_t b) {
     ESP_ERROR_CHECK(strip->set_pixel(strip, led_num, r, g, b));
     return strip->refresh(strip, 100);
 
