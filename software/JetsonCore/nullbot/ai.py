@@ -64,13 +64,17 @@ class ObstacleNet(StackNetwork):
 class AvoidanceNet(StackNetwork):
     image = True
     def __init__(self) -> None:
-        model = jetson.inference.detectNet("ssd-mobilenet-v2")
+        self.model = jetson.inference.detectNet("ssd-mobilenet-v2")
     
     def predict(self, img:Image) -> list:
         detections = self.model.Detect(jetson.utils.cudaFromNumpy(cv2.cvtColor(np.array(img), cv2.COLOR_BGR2RGBA)), 1280, 720)
         data = [(det.Center, det.Width, det.Height) for det in detections]
         return data
     
+    def predict_raw(self, img:Image) -> list:
+        detections = self.model.Detect(jetson.utils.cudaFromNumpy(cv2.cvtColor(np.array(img), cv2.COLOR_BGR2RGBA)), 1280, 720)
+        return detections
+
     def ai_stack(self, img:Image) -> None:
         pass
         #ai_stack function to get triggered and calculate where to go based on results
