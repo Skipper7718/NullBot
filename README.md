@@ -1,4 +1,5 @@
 # NullBot Mark 1
+![Assembled Bot](hardware/images/MK1-full.jpg)
 Current Todo:
 * Ultrasonic Sensor programming
 * mainboard pcb schematic
@@ -117,7 +118,6 @@ The dev module uses an ESP32 as processor and can be used to prototype custom mo
 ## Images
 ---
 Assembled Bot with Drive Module
-![Assembled Bot](hardware/images/MK1-full.jpg)
 ![Assembled Bot](hardware/images/MK1-back.jpg)
 ![Assembled Bot](hardware/images/MK1-side.jpg)
 Drive Module
