@@ -108,7 +108,7 @@ class Base:
 # Prebuilt nullbot modules
 class DriveModule(Base):
     """"Module for basic driving around - H style voltage regulators"""
-    def __init__(self, address: int = 0x51) -> None:
+    def __init__(self, address: int = 0x56) -> None:
         super().__init__(address)
         self.v_calibration: int
 

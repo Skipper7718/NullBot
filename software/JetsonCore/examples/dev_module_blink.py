@@ -1,11 +1,15 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from nullbot import modules, camera
+import sys
+sys.path.append("./NullBot/software/JetsonCore")
+sys.path.append("./NullBot/software/JetsonCore/nullbot")
+
+from nullbot import modules
 from time import sleep
 
 class MyModule(modules.Base):
     def __init__(self) -> None:
-        super().__init__(0x54)
+        super().__init__(0x1a)
 
     def on(self):
         self.send(0x01)
