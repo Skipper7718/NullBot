@@ -6,6 +6,7 @@ read_scan: 0x20
 write_address: 0x21 #address #num_bytes message
 read_address: 0x22 #address #num_bytes_write message (echo)
 clear_i2c: 0x32 #address
+read_distance: 0x40
 display:
   error: 0x30
   thread_failure: 0x31

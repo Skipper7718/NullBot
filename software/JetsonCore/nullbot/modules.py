@@ -89,6 +89,17 @@ def wait_lock(func):
         _coprocessor.locked = False
     return __inner
 
+class DistanceSensor:
+    def __init__(self) -> None:
+        pass
+    
+    def read(self) -> int:
+        _coprocessor.write([instruction_set["read_distance"]])
+        result = _coprocessor.read()
+        if( len(result) < 1 ):
+            return 0
+        return int(result[0])
+
 class Base:
     def __init__(self, address: int) -> None:
         self.address = address
