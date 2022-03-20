@@ -14,16 +14,29 @@
 #include "sh1106.h"
 #include "coprocessor.h"
 #include "led_strip.h"
+#include "ultrasonic.h"
 
 int num_found_addresses = 0;
 uint8_t found_addresses[128];
 led_strip_t *strip;
+ultrasonic_sensor_t distance =  {
+    .echo_pin = 26,
+    .trigger_pin = 25
+};
 
 void app_main(void)
 {
     //INITIALIZE COMPONENTS
     init_i2c_master();
     sh1106_init();
+    ultrasonic_init(&distance);
+    // ULTRASONIC TEST
+    // for( ;; ) {
+    //     char TAG[] = "DISTANCE";
+    //     uint32_t i = 0;
+    //     ultrasonic_measure_cm( &distance, 0xfd, &i );
+    //     ESP_LOGI(TAG, "RESULT: %d", i);
+    // }
 
     rmt_config_t config = RMT_DEFAULT_CONFIG_TX(RMT_TX_GPIO, RMT_TX_CHANNEL);
     // set counter clock to 40MHz
@@ -125,6 +138,17 @@ void interpret_signal(char *input, int signal_length) {
             }
             putchar(i_stop);
             break;
+        
+        case i_read_distance:
+            {
+            uint32_t measurement = 0;
+            ultrasonic_measure_cm( &distance, 240, &measurement );
+            if( measurement <= 0xfd && measurement > 0 ) {
+                putchar( (uint8_t)measurement );
+                putchar( i_stop );
+            }
+            break;
+            }
 
         case i_display_error:
             print_display("\n----- !!!! -----\n\nERROR\n\n----- !!!! -----");

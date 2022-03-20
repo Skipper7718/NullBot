@@ -14,6 +14,7 @@ enum INSTRUCTION_SET {
     i_read_scan = 0x20,
     i_write_address = 0x21,
     i_read_address = 0x22,
+    i_read_distance = 0x40,
     i_display_error = 0x30,
     i_display_thread_failure = 0x31,
     i_display_all_running = 0x32,
