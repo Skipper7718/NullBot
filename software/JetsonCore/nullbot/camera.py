@@ -8,8 +8,7 @@ import numpy as np
 
 from nullbot import watchdog
 
-__activated = False
-__callback_function = None
+__thread = None
 cam = None
 pipeline = "nvarguscamerasrc ! \
 video/x-raw(memory:NVMM), width=(int)1280, height=(int)720,format=(string)NV12, framerate=(fraction)30/1 ! \
@@ -27,23 +26,33 @@ def cam_condition(wrap):
     return __inner
 
 @cam_condition
-def read_image() -> None:
+def read_image(callback=None) -> None | Image:
     #img, _, _ = cam.CaptureRGBA(zeroCopy=1)
     #img = Image.fromarray(cv2.cvtColor(np.array(img).astype(np.uint8), cv2.COLOR_RGBA2RGB))
     #__callback_function(img)
     success, image = cam.read()
     if( success ):
         image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-        __callback_function(image)
+        if callback != None:
+            callback(image)
+        else:
+            return image
+
 
 @cam_condition
 def camera_with_callback(callback) -> None:
-    global __callback_function, __activated
-    if( not  __activated ):
-        __callback_function = callback
+    global __thread
+    if( not  __thread ):
         #cam = gstCamera(1280,720,"0")
-        thread = watchdog.LoopThread(target=read_image, daemon=True, name="Camera_interrupt")
+        thread = watchdog.LoopThread(target=read_image, args=(callback,), daemon=True, name="Camera_interrupt")
         thread.start()
-        __activated = True
+        __thread = thread
     else:
         raise Exception("You can only use one Camera callback")
+
+def camera_stop() -> None:
+    global cam, __thread
+    if __thread != None:
+        __thread.stop()
+        cam.release()
+        __thread = cam = None

@@ -10,7 +10,7 @@ class LoopThread:
         self.target = target
         self.args = args
         self.name = name
-        self.thread = threading.Thread(target=self.task, name=self.name, daemon=daemon)
+        self.thread = threading.Thread(target=self.task, args=args, name=self.name, daemon=daemon)
         self.running = False
         registered_threads.append(self)
 

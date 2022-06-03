@@ -3,7 +3,7 @@ from imp import find_module
 from typing import Union
 import serial
 from time import sleep
-from serial.serialposix import Serial
+from serial import Serial
 import yaml, os
 
 global _coprocessor
