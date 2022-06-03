@@ -14,7 +14,7 @@ class LoopThread:
         self.running = False
         registered_threads.append(self)
 
-    def task(self) -> None:
+    def task(self, *args) -> None:
         self.running = True
         while( self.running ):
             try:

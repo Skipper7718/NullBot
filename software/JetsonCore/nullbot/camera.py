@@ -3,6 +3,7 @@
 
 #from jetson.utils import gstCamera
 from PIL import Image
+from typing import Union
 import cv2
 import numpy as np
 
@@ -26,7 +27,7 @@ def cam_condition(wrap):
     return __inner
 
 @cam_condition
-def read_image(callback=None) -> None | Image:
+def read_image(callback=None) -> Union[None, Image.Image]:
     #img, _, _ = cam.CaptureRGBA(zeroCopy=1)
     #img = Image.fromarray(cv2.cvtColor(np.array(img).astype(np.uint8), cv2.COLOR_RGBA2RGB))
     #__callback_function(img)

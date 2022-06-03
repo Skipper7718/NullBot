@@ -10,8 +10,8 @@ import numpy as np
 import cv2
 
 from PIL import Image
-from neural import ObstacleNet as obs_net
-import watchdog, modules
+from nullbot import watchdog, modules
+from nullbot.neural import ObstacleNet
 
 __stack_lock = False
 
