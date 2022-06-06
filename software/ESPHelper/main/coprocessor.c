@@ -140,6 +140,8 @@ void interpret_signal(char *input, int signal_length) {
             break;
         
         case i_read_distance:
+	    // TODO implement timeout cheker for read and assert error is failed.
+	    // Now the robot blocks any kind of communication
             {
             uint32_t measurement = 0;
             ultrasonic_measure_cm( &distance, 240, &measurement );
